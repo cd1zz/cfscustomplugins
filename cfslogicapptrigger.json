@@ -1,0 +1,36 @@
+openapi: 3.0.0
+info:
+  title: LogicApp Trigger API
+  version: 1.0.0
+  description: API specification for triggering a Logic App with a specified action.
+paths:
+  /trigger:
+    post:
+      summary: Trigger a specific action in the Logic App
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action:
+                  type: string
+                  description: The action to be performed by the Logic App.
+              required:
+                - action
+      responses:
+        '200':
+          description: Successfully triggered the Logic App.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Logic App triggered successfully."
+        '400':
+          description: Bad request if the payload is incorrect.
+        '500':
+          description: Internal server error.
